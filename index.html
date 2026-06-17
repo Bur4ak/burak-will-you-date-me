@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bir Sorum Var...</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="lang-switcher">
+        <span class="lang-btn active" data-lang="tr">TR</span>
+        <span class="lang-divider">|</span>
+        <span class="lang-btn" data-lang="en">EN</span>
+    </div>
+
+    <div class="container" id="start-container">
+        <h1>Önce ismini yazar mısın? 🥺💕</h1>
+        <input type="text" id="name-input" placeholder="İsmini buraya yaz..." autocomplete="off">
+        <button class="btn btn-yes" id="start-btn">Devam Et ✨</button>
+    </div>
+
+
+    <div class="container hidden" id="main-container">
+        <button id="back-btn" class="btn-back">← Geri</button>
+        <div class="gif-container">
+
+            <img src="./cat.gif" alt="Sevimli kedi" id="main-gif">
+        </div>
+        <h1 id="question">Benimle çıkar mısın? 🥺👉👈</h1>
+        <div class="buttons">
+            <button class="btn btn-yes" id="yes-btn">Evet! 🥰</button>
+            <button class="btn btn-no" id="no-btn">Hayır 😒</button>
+        </div>
+    </div>
+
+
+    <div class="success-container hidden" id="success-container">
+        <img src="./success.gif" alt="Mutlu kedi" class="success-gif">
+        <h1 id="success-title">YAAAY! Biliyordum! 🎉❤️</h1>
+        <p>Hazırlan, seni dünyanın en güzel yerine götüreceğim! ✨</p>
+    </div>
+
+    <footer>
+        Made with ❤️ by Burak Yıldırım
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
