@@ -264,6 +264,7 @@ yesBtn.addEventListener('click', () => {
     burstHearts();
 
 
+    // İlk başta 3 konfeti (orta, sol, sağ) patlasın
     confetti({
         particleCount: 150,
         spread: 80,
@@ -291,6 +292,27 @@ yesBtn.addEventListener('click', () => {
             colors: ['#ff007f', '#ff3399', '#ffffff']
         });
     }, 350);
+
+    // Sonrasında yanlardaki konfetiler 7 saniyede bir patlamaya devam etsin
+    setInterval(() => {
+        confetti({
+            particleCount: 80,
+            angle: 60,
+            spread: 55,
+            origin: { x: 0, y: 0.8 },
+            colors: ['#ff007f', '#ff3399', '#ffffff']
+        });
+
+        setTimeout(() => {
+            confetti({
+                particleCount: 80,
+                angle: 120,
+                spread: 55,
+                origin: { x: 1, y: 0.8 },
+                colors: ['#ff007f', '#ff3399', '#ffffff']
+            });
+        }, 150); // Şık bir zincirleme efekt için hafif gecikmeyle
+    }, 5000);
 });
 
 
