@@ -29,11 +29,6 @@
 * **🎉 Muhteşem Efektler (Awesome Effects):** 
   * "Evet" butonunun üzerinde göz alıcı ışıma (glow) efekti.
   * Teklif kabul edildiğinde ekranın ortasından fırlayan 3D kalpler ve konfetiler.
-* **🥚 Gizli Easter Eggler (Secret Easter Eggs):**
-  * İsim kutusuna **`67`** yazıldığında sadece Zonguldak'a özel gif ve geri butonu görünür.
-  * İsim kutusuna **`gay`** yazıldığında sadece özel komik gif ve geri butonu görünür.
-* **🐱 Sevimli Gifler (Cute Gifs):** Popüler ve sevimli Peach-Goma kedi gifleri entegre edilmiştir.
-
 ---
 
 ## 🛠️ Nasıl Çalıştırılır? / How to Run?
