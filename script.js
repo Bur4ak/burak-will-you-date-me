@@ -13,6 +13,10 @@ const mainGif = document.getElementById('main-gif');
 let userName = "";
 let currentLang = "tr";
 
+// Şarkıyı tanımla ve döngüye al
+const proposalAudio = new Audio("A Tear in Space (Airlock) - Glass Animals.mp3");
+proposalAudio.loop = true;
+
 const translations = {
     tr: {
         startTitle: "Önce ismini yazar mısın? 🥺💕",
@@ -236,6 +240,27 @@ yesBtn.addEventListener('click', () => {
     setTimeout(() => {
         successContainer.classList.add('show');
     }, 50);
+
+    // Müzik çalma ve 1 saniyede fade-in yapma logic
+    proposalAudio.currentTime = 38; // 38. saniyeden başlat
+    proposalAudio.volume = 0; // Başlangıç sesi 0
+    proposalAudio.play().catch(err => {
+        console.log("Audio play blocked by browser autoplay policy:", err);
+    });
+
+    // 1 saniyede fade-in
+    const fadeDuration = 1000; // 1 saniye (1000ms)
+    const fadeInterval = 50; // Her 50ms'de bir artır
+    const volumeStep = fadeInterval / fadeDuration; // Adım başı artış miktarı
+
+    const fadeIn = setInterval(() => {
+        if (proposalAudio.volume < 1) {
+            proposalAudio.volume = Math.min(1, proposalAudio.volume + volumeStep);
+        } else {
+            clearInterval(fadeIn);
+        }
+    }, fadeInterval);
+
     burstHearts();
 
 
