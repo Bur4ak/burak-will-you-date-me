@@ -28,7 +28,7 @@ const translations = {
         startTitle: "Önce ismini yazar mısın? 🥺💕",
         namePlaceholder: "İsmini buraya yaz...",
         startBtn: "Devam Et ✨",
-        questionSuffix: ", benimle çıkar mısın? 🥺👉👈",
+        questionSuffix: ", Burak'la çıkar mısın? 🥺👉👈",
         successTitleFull: (name) => `YAAAY! Biliyordum! 🎉❤️`,
         successText: "Artık Benimsin! ✨",
         yesBtn: "Evet! 🥰",
@@ -49,7 +49,7 @@ const translations = {
         startTitle: "Could you write your name first? 🥺💕",
         namePlaceholder: "Write your name here...",
         startBtn: "Continue ✨",
-        questionSuffix: ", will you go out with me? 🥺👉👈",
+        questionSuffix: ", will you go out with Burak? 🥺👉👈",
         successTitleFull: (name) => `YAAAY! I knew it! 🎉❤️`,
         successText: "You are mine now! ✨",
         yesBtn: "Yes! 🥰",
@@ -70,6 +70,8 @@ const translations = {
 
 function updateLanguage(lang) {
     currentLang = lang;
+
+    document.title = lang === 'tr' ? 'Burakla Çıkar mısın? 💖' : 'Will You Go Out With Burak? 💖';
 
     document.querySelectorAll('.lang-btn').forEach(btn => {
         if (btn.getAttribute('data-lang') === lang) {
