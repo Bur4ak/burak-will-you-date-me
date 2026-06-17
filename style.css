@@ -211,7 +211,6 @@ h1 {
     }
 }
 
-/* Dil Değiştirici (Language Switcher) */
 .lang-switcher {
     position: fixed;
     top: 20px;
@@ -252,7 +251,6 @@ h1 {
     opacity: 0.5;
 }
 
-/* Footer (Burak Yıldırım imzası) */
 footer {
     position: fixed;
     bottom: 15px;
@@ -274,49 +272,48 @@ footer:hover {
     text-shadow: 0 0 8px #ff007f, 0 0 15px #ff007f;
 }
 
-/* Mobil Uyumluluk (Mobile Responsiveness) */
 @media (max-width: 480px) {
     .container {
         padding: 2.5rem 1.5rem;
     }
-    
+
     .success-container {
         padding: 3rem 1.5rem;
     }
-    
+
     h1 {
         font-size: 1.6rem;
         margin-bottom: 1.5rem;
     }
-    
+
     .success-container h1 {
         font-size: 1.8rem;
     }
-    
+
     .buttons {
         gap: 1.2rem;
         height: auto;
         flex-direction: row;
     }
-    
+
     .btn {
         padding: 10px 24px;
         font-size: 1.05rem;
     }
-    
+
     .btn-back {
         top: 10px;
         left: 15px;
         font-size: 0.85rem;
     }
-    
+
     .lang-switcher {
         top: 15px;
         right: 15px;
         padding: 4px 8px;
         font-size: 0.85rem;
     }
-    
+
     footer {
         font-size: 0.75rem;
         bottom: 10px;
@@ -325,7 +322,7 @@ footer:hover {
     }
 }
 
-/* BURAK PRO Butonu */
+
 .btn-pro {
     position: absolute;
     top: 15px;
@@ -351,12 +348,20 @@ footer:hover {
 }
 
 @keyframes pulse {
-    0% { box-shadow: 0 0 10px rgba(255, 0, 127, 0.4); }
-    50% { box-shadow: 0 0 20px rgba(255, 0, 127, 0.8); }
-    100% { box-shadow: 0 0 10px rgba(255, 0, 127, 0.4); }
+    0% {
+        box-shadow: 0 0 10px rgba(255, 0, 127, 0.4);
+    }
+
+    50% {
+        box-shadow: 0 0 20px rgba(255, 0, 127, 0.8);
+    }
+
+    100% {
+        box-shadow: 0 0 10px rgba(255, 0, 127, 0.4);
+    }
 }
 
-/* Premium Ödeme Modalı */
+
 .modal {
     position: fixed;
     top: 0;
@@ -386,8 +391,15 @@ footer:hover {
 }
 
 @keyframes zoomIn {
-    from { transform: scale(0.85); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
+    from {
+        transform: scale(0.85);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
 .premium-card h2 {

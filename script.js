@@ -18,11 +18,9 @@ const proCardName = document.getElementById('pro-card-name');
 let userName = "";
 let currentLang = "tr";
 
-// Şarkıyı tanımla ve döngüye al
 const proposalAudio = new Audio("A Tear in Space (Airlock) - Glass Animals.mp3");
 proposalAudio.loop = true;
 
-// Roblox oof sesini tanımla
 const oofAudio = new Audio("roblox-death-sound_ytkBL7X.mp3");
 
 const translations = {
@@ -73,7 +71,6 @@ const translations = {
 function updateLanguage(lang) {
     currentLang = lang;
 
-    // Aktif dil butonunun stilini değiştir
     document.querySelectorAll('.lang-btn').forEach(btn => {
         if (btn.getAttribute('data-lang') === lang) {
             btn.classList.add('active');
@@ -82,18 +79,14 @@ function updateLanguage(lang) {
         }
     });
 
-    // Giriş ekranı yazılarını güncelle
     document.querySelector('#start-container h1').innerHTML = translations[lang].startTitle;
     nameInput.placeholder = translations[lang].namePlaceholder;
     startBtn.innerHTML = translations[lang].startBtn;
-
-    // Ana ekran butonlarını ve geri butonunu güncelle
     yesBtn.innerHTML = translations[lang].yesBtn;
     noBtn.innerHTML = translations[lang].noBtn;
     backBtn.innerHTML = translations[lang].backBtn;
     proBtn.innerHTML = translations[lang].proBtn;
 
-    // Eğer isim girildiyse dinamik metinleri güncelle
     if (userName) {
         if (userName !== '67' && userName.toLowerCase() !== 'gay') {
             questionText.innerHTML = userName + translations[lang].questionSuffix;
@@ -103,7 +96,6 @@ function updateLanguage(lang) {
 
     document.querySelector('#success-container p').innerHTML = translations[lang].successText;
 
-    // Premium modal elemanlarını güncelle
     document.getElementById('pro-title').innerHTML = translations[lang].proTitle;
     document.getElementById('pro-subtitle').innerHTML = translations[lang].proSubtitle;
     document.getElementById('pro-price').innerHTML = translations[lang].proPrice;
@@ -119,7 +111,6 @@ function updateLanguage(lang) {
     document.getElementById('pro-features').innerHTML = featuresHTML;
 }
 
-// Dil seçimi butonlarını dinle
 document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.addEventListener('click', () => {
         updateLanguage(btn.getAttribute('data-lang'));
@@ -191,7 +182,6 @@ backBtn.addEventListener('click', () => {
 });
 
 function moveButton() {
-    // Ses dosyasını sıfırlayıp çal
     oofAudio.currentTime = 0;
     oofAudio.play().catch(err => {
         console.log("Audio play blocked by browser autoplay policy:", err);
@@ -291,17 +281,14 @@ yesBtn.addEventListener('click', () => {
         successContainer.classList.add('show');
     }, 50);
 
-    // Müzik çalma ve 1 saniyede fade-in yapma logic
-    proposalAudio.currentTime = 38; // 38. saniyeden başlat
-    proposalAudio.volume = 0; // Başlangıç sesi 0
+    proposalAudio.currentTime = 38;
+    proposalAudio.volume = 0;
     proposalAudio.play().catch(err => {
         console.log("Audio play blocked by browser autoplay policy:", err);
     });
-
-    // 1 saniyede fade-in
-    const fadeDuration = 1000; // 1 saniye (1000ms)
-    const fadeInterval = 50; // Her 50ms'de bir artır
-    const volumeStep = fadeInterval / fadeDuration; // Adım başı artış miktarı
+    const fadeDuration = 1000;
+    const fadeInterval = 50;
+    const volumeStep = fadeInterval / fadeDuration;
 
     const fadeIn = setInterval(() => {
         if (proposalAudio.volume < 1) {
@@ -314,7 +301,6 @@ yesBtn.addEventListener('click', () => {
     burstHearts();
 
 
-    // İlk başta 3 konfeti (orta, sol, sağ) patlasın
     confetti({
         particleCount: 150,
         spread: 80,
@@ -343,7 +329,7 @@ yesBtn.addEventListener('click', () => {
         });
     }, 350);
 
-    // Sonrasında yanlardaki konfetiler 7 saniyede bir patlamaya devam etsin
+
     setInterval(() => {
         confetti({
             particleCount: 80,
@@ -361,7 +347,7 @@ yesBtn.addEventListener('click', () => {
                 origin: { x: 1, y: 0.8 },
                 colors: ['#ff007f', '#ff3399', '#ffffff']
             });
-        }, 150); // Şık bir zincirleme efekt için hafif gecikmeyle
+        }, 150);
     }, 2000);
 });
 
@@ -387,7 +373,6 @@ function createHeart() {
 
 setInterval(createHeart, 400);
 
-// Başarı ekranındaki gife tıklandığında da yan konfetileri tetikle
 const successGif = document.querySelector('.success-gif');
 successGif.addEventListener('click', () => {
     confetti({
@@ -409,7 +394,6 @@ successGif.addEventListener('click', () => {
     }, 150);
 });
 
-// Premium Modal Kontrolleri
 proBtn.addEventListener('click', () => {
     proCardName.value = userName || (currentLang === 'tr' ? 'Kart Sahibi' : 'Cardholder');
     premiumModal.classList.remove('hidden');
@@ -426,7 +410,6 @@ subscribeBtn.addEventListener('click', () => {
     alert(successMsg);
     premiumModal.classList.add('hidden');
 
-    // Satın alma konfetisi
     confetti({
         particleCount: 200,
         spread: 100,
