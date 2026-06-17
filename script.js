@@ -20,7 +20,7 @@ const translations = {
         startBtn: "Devam Et ✨",
         questionSuffix: ", benimle çıkar mısın? 🥺👉👈",
         successTitleFull: (name) => `YAAAY! Biliyordum ${name}! 🎉❤️`,
-        successText: "Hazırlan, seni dünyanın en güzel yerine götüreceğim! ✨",
+        successText: "Artık Benimsin! ✨",
         yesBtn: "Evet! 🥰",
         noBtn: "Hayır 😒",
         backBtn: "← Geri"
@@ -31,7 +31,7 @@ const translations = {
         startBtn: "Continue ✨",
         questionSuffix: ", will you go out with me? 🥺👉👈",
         successTitleFull: (name) => `YAAAY! I knew it ${name}! 🎉❤️`,
-        successText: "Get ready, I'm taking you to the most beautiful place in the world! ✨",
+        successText: "You are mine now! ✨",
         yesBtn: "Yes! 🥰",
         noBtn: "No 😒",
         backBtn: "← Back"
@@ -40,7 +40,7 @@ const translations = {
 
 function updateLanguage(lang) {
     currentLang = lang;
-    
+
     // Aktif dil butonunun stilini değiştir
     document.querySelectorAll('.lang-btn').forEach(btn => {
         if (btn.getAttribute('data-lang') === lang) {
@@ -67,7 +67,7 @@ function updateLanguage(lang) {
         }
         successTitle.innerHTML = translations[lang].successTitleFull(userName);
     }
-    
+
     document.querySelector('#success-container p').innerHTML = translations[lang].successText;
 }
 
