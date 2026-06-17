@@ -38,9 +38,35 @@
 
 
     <div class="success-container hidden" id="success-container">
+        <button id="pro-btn" class="btn-pro">BURAK PRO ⭐</button>
         <img src="./success.gif" alt="Mutlu kedi" class="success-gif">
         <h1 id="success-title">YAAAY! Biliyordum! 🎉❤️</h1>
         <p>Artık Benimsin! ✨</p>
+    </div>
+
+    <!-- Premium Modal -->
+    <div class="modal hidden" id="premium-modal">
+        <div class="premium-card">
+            <button class="close-btn" id="close-premium-btn">&times;</button>
+            <h2 id="pro-title">🌟 BURAK PRO 🌟</h2>
+            <p class="subtitle" id="pro-subtitle">İlişkinizi Bir Üst Seviyeye Taşıyın</p>
+            <div class="price-badge" id="pro-price">20$<span>/aylık</span></div>
+            <ul class="features-list" id="pro-features">
+                <li>💖 Sınırsız Sanal Sarılma</li>
+                <li>🚀 Öncelikli Randevu Planlama</li>
+                <li>🚫 Reklamsız İlişki Deneyimi</li>
+                <li>🔒 Ömür Boyu Bağlılık Lisansı</li>
+            </ul>
+            <div class="card-form">
+                <input type="text" id="pro-card-name" placeholder="Kart Sahibi" disabled>
+                <input type="text" placeholder="4111 2222 3333 4444" maxlength="19">
+                <div class="card-row">
+                    <input type="text" placeholder="MM/YY" maxlength="5">
+                    <input type="text" placeholder="CVC" maxlength="3">
+                </div>
+                <button class="btn btn-yes" id="subscribe-btn">Şimdi Abone Ol 💖</button>
+            </div>
+        </div>
     </div>
 
     <footer>

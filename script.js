@@ -9,6 +9,11 @@ const questionText = document.getElementById('question');
 const successTitle = document.getElementById('success-title');
 const backBtn = document.getElementById('back-btn');
 const mainGif = document.getElementById('main-gif');
+const proBtn = document.getElementById('pro-btn');
+const premiumModal = document.getElementById('premium-modal');
+const closePremiumBtn = document.getElementById('close-premium-btn');
+const subscribeBtn = document.getElementById('subscribe-btn');
+const proCardName = document.getElementById('pro-card-name');
 
 let userName = "";
 let currentLang = "tr";
@@ -30,7 +35,17 @@ const translations = {
         successText: "Artık Benimsin! ✨",
         yesBtn: "Evet! 🥰",
         noBtn: "Hayır 😒",
-        backBtn: "← Geri"
+        backBtn: "← Geri",
+        proBtn: "BURAK PRO ⭐",
+        proTitle: "🌟 BURAK PRO 🌟",
+        proSubtitle: "İlişkinizi Bir Üst Seviyeye Taşıyın",
+        proPrice: "20$<span>/aylık</span>",
+        proFeature1: "💖 Sınırsız Sanal Sarılma",
+        proFeature2: "🚀 Öncelikli Randevu Planlama",
+        proFeature3: "🚫 Reklamsız İlişki Deneyimi",
+        proFeature4: "🔒 Ömür Boyu Bağlılık Lisansı",
+        proSubscribe: "Şimdi Abone Ol 💖",
+        proCardHolder: "Kart Sahibi"
     },
     en: {
         startTitle: "Could you write your name first? 🥺💕",
@@ -41,7 +56,17 @@ const translations = {
         successText: "You are mine now! ✨",
         yesBtn: "Yes! 🥰",
         noBtn: "No 😒",
-        backBtn: "← Back"
+        backBtn: "← Back",
+        proBtn: "BURAK PRO ⭐",
+        proTitle: "🌟 BURAK PRO 🌟",
+        proSubtitle: "Elevate Your Relationship to the Next Level",
+        proPrice: "$20<span>/month</span>",
+        proFeature1: "💖 Unlimited Virtual Hugs",
+        proFeature2: "🚀 Priority Date Planning",
+        proFeature3: "🚫 Ad-Free Relationship Experience",
+        proFeature4: "🔒 Lifetime Commitment License",
+        proSubscribe: "Subscribe Now 💖",
+        proCardHolder: "Cardholder Name"
     }
 };
 
@@ -66,6 +91,7 @@ function updateLanguage(lang) {
     yesBtn.innerHTML = translations[lang].yesBtn;
     noBtn.innerHTML = translations[lang].noBtn;
     backBtn.innerHTML = translations[lang].backBtn;
+    proBtn.innerHTML = translations[lang].proBtn;
 
     // Eğer isim girildiyse dinamik metinleri güncelle
     if (userName) {
@@ -76,6 +102,21 @@ function updateLanguage(lang) {
     }
 
     document.querySelector('#success-container p').innerHTML = translations[lang].successText;
+
+    // Premium modal elemanlarını güncelle
+    document.getElementById('pro-title').innerHTML = translations[lang].proTitle;
+    document.getElementById('pro-subtitle').innerHTML = translations[lang].proSubtitle;
+    document.getElementById('pro-price').innerHTML = translations[lang].proPrice;
+    document.getElementById('pro-card-name').placeholder = translations[lang].proCardHolder;
+    subscribeBtn.innerHTML = translations[lang].proSubscribe;
+
+    const featuresHTML = `
+        <li>${translations[lang].proFeature1}</li>
+        <li>${translations[lang].proFeature2}</li>
+        <li>${translations[lang].proFeature3}</li>
+        <li>${translations[lang].proFeature4}</li>
+    `;
+    document.getElementById('pro-features').innerHTML = featuresHTML;
 }
 
 // Dil seçimi butonlarını dinle
@@ -366,4 +407,30 @@ successGif.addEventListener('click', () => {
             colors: ['#ff007f', '#ff3399', '#ffffff']
         });
     }, 150);
+});
+
+// Premium Modal Kontrolleri
+proBtn.addEventListener('click', () => {
+    proCardName.value = userName || (currentLang === 'tr' ? 'Kart Sahibi' : 'Cardholder');
+    premiumModal.classList.remove('hidden');
+});
+
+closePremiumBtn.addEventListener('click', () => {
+    premiumModal.classList.add('hidden');
+});
+
+subscribeBtn.addEventListener('click', () => {
+    const successMsg = currentLang === 'tr'
+        ? "Premium üyelik başarıyla satın alındı! Artık resmen benimsin! ❤️"
+        : "Premium subscription activated! You are officially mine now! ❤️";
+    alert(successMsg);
+    premiumModal.classList.add('hidden');
+
+    // Satın alma konfetisi
+    confetti({
+        particleCount: 200,
+        spread: 100,
+        origin: { y: 0.6 },
+        colors: ['#ff007f', '#ff00ff', '#ffffff']
+    });
 });
