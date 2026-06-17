@@ -71,7 +71,7 @@ const translations = {
 function updateLanguage(lang) {
     currentLang = lang;
 
-    document.title = lang === 'tr' ? 'Burakla Çıkar mısın? 💖' : 'Will You Go Out With Burak? 💖';
+    document.title = lang === 'tr' ? 'Burak\'la Çıkar mısın? 💖' : 'Will You Go Out With Burak? 💖';
 
     document.querySelectorAll('.lang-btn').forEach(btn => {
         if (btn.getAttribute('data-lang') === lang) {
