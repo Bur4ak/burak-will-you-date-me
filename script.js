@@ -17,6 +17,9 @@ let currentLang = "tr";
 const proposalAudio = new Audio("A Tear in Space (Airlock) - Glass Animals.mp3");
 proposalAudio.loop = true;
 
+// Roblox oof sesini tanımla
+const oofAudio = new Audio("roblox-death-sound_ytkBL7X.mp3");
+
 const translations = {
     tr: {
         startTitle: "Önce ismini yazar mısın? 🥺💕",
@@ -147,6 +150,12 @@ backBtn.addEventListener('click', () => {
 });
 
 function moveButton() {
+    // Ses dosyasını sıfırlayıp çal
+    oofAudio.currentTime = 0;
+    oofAudio.play().catch(err => {
+        console.log("Audio play blocked by browser autoplay policy:", err);
+    });
+
     if (!noBtn.classList.contains('moving')) {
 
         const rect = noBtn.getBoundingClientRect();
