@@ -312,7 +312,7 @@ yesBtn.addEventListener('click', () => {
                 colors: ['#ff007f', '#ff3399', '#ffffff']
             });
         }, 150); // Şık bir zincirleme efekt için hafif gecikmeyle
-    }, 5000);
+    }, 2000);
 });
 
 
@@ -336,3 +336,25 @@ function createHeart() {
 
 
 setInterval(createHeart, 400);
+
+// Başarı ekranındaki gife tıklandığında da yan konfetileri tetikle
+const successGif = document.querySelector('.success-gif');
+successGif.addEventListener('click', () => {
+    confetti({
+        particleCount: 80,
+        angle: 60,
+        spread: 55,
+        origin: { x: 0, y: 0.8 },
+        colors: ['#ff007f', '#ff3399', '#ffffff']
+    });
+
+    setTimeout(() => {
+        confetti({
+            particleCount: 80,
+            angle: 120,
+            spread: 55,
+            origin: { x: 1, y: 0.8 },
+            colors: ['#ff007f', '#ff3399', '#ffffff']
+        });
+    }, 150);
+});

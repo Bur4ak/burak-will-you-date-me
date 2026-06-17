@@ -168,6 +168,12 @@ h1 {
     border-radius: 20px;
     margin-bottom: 2rem;
     box-shadow: 0 5px 25px rgba(255, 0, 127, 0.25);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.success-gif:hover {
+    transform: scale(1.04);
 }
 
 .success-container h1 {
