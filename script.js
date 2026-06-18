@@ -14,6 +14,10 @@ const premiumModal = document.getElementById('premium-modal');
 const closePremiumBtn = document.getElementById('close-premium-btn');
 const subscribeBtn = document.getElementById('subscribe-btn');
 const proCardName = document.getElementById('pro-card-name');
+const soundToggle = document.getElementById('sound-toggle');
+const proCardNumInput = document.getElementById('pro-card-number');
+const proCardExpiryInput = document.getElementById('pro-card-expiry');
+const proCardCvcInput = document.getElementById('pro-card-cvc');
 
 let userName = "";
 let currentLang = "tr";
@@ -271,6 +275,8 @@ function burstHearts() {
 
 yesBtn.addEventListener('click', () => {
 
+    soundToggle.classList.remove('hidden');
+
     mainContainer.classList.add('hidden');
 
     noBtn.style.display = 'none';
@@ -399,6 +405,13 @@ successGif.addEventListener('click', () => {
 
 proBtn.addEventListener('click', () => {
     proCardName.value = userName || (currentLang === 'tr' ? 'Kart Sahibi' : 'Cardholder');
+    // Temizlik
+    proCardNumInput.value = "";
+    proCardExpiryInput.value = "";
+    proCardCvcInput.value = "";
+    proCardNumInput.style.borderColor = "";
+    proCardExpiryInput.style.borderColor = "";
+    proCardCvcInput.style.borderColor = "";
     premiumModal.classList.remove('hidden');
 });
 
@@ -406,7 +419,61 @@ closePremiumBtn.addEventListener('click', () => {
     premiumModal.classList.add('hidden');
 });
 
+proCardNumInput.addEventListener('input', (e) => {
+    let val = e.target.value.replace(/\D/g, '');
+    let matches = val.match(/\d{1,4}/g);
+    if (matches) {
+        e.target.value = matches.join(' ');
+    } else {
+        e.target.value = '';
+    }
+});
+
+proCardExpiryInput.addEventListener('input', (e) => {
+    let val = e.target.value.replace(/\D/g, '');
+    if (val.length > 2) {
+        e.target.value = val.substring(0, 2) + '/' + val.substring(2, 4);
+    } else {
+        e.target.value = val;
+    }
+});
+
+proCardCvcInput.addEventListener('input', (e) => {
+    e.target.value = e.target.value.replace(/\D/g, '');
+});
+
 subscribeBtn.addEventListener('click', () => {
+    const cardNum = proCardNumInput.value.trim();
+    const cardExpiry = proCardExpiryInput.value.trim();
+    const cardCvc = proCardCvcInput.value.trim();
+
+    let valid = true;
+    proCardNumInput.style.borderColor = "";
+    proCardExpiryInput.style.borderColor = "";
+    proCardCvcInput.style.borderColor = "";
+
+
+    if (cardNum.length < 19) {
+        proCardNumInput.style.borderColor = "#ff0000";
+        valid = false;
+    }
+    if (cardExpiry.length < 5) {
+        proCardExpiryInput.style.borderColor = "#ff0000";
+        valid = false;
+    }
+    if (cardCvc.length < 3) {
+        proCardCvcInput.style.borderColor = "#ff0000";
+        valid = false;
+    }
+
+    if (!valid) {
+        const errorMsg = currentLang === 'tr'
+            ? "Lütfen tüm kart bilgilerini doğru ve eksiksiz doldurun! 💳"
+            : "Please fill in all card details correctly! 💳";
+        alert(errorMsg);
+        return;
+    }
+
     const successMsg = currentLang === 'tr'
         ? "Premium üyelik başarıyla satın alındı! Artık resmen benimsin! ❤️"
         : "Premium subscription activated! You are officially mine now! ❤️";
@@ -419,4 +486,16 @@ subscribeBtn.addEventListener('click', () => {
         origin: { y: 0.6 },
         colors: ['#ff007f', '#ff00ff', '#ffffff']
     });
+});
+
+soundToggle.addEventListener('click', () => {
+    if (proposalAudio.muted) {
+        proposalAudio.muted = false;
+        soundToggle.innerHTML = '🔊';
+        soundToggle.style.textShadow = '0 0 10px #ff007f';
+    } else {
+        proposalAudio.muted = true;
+        soundToggle.innerHTML = '🔇';
+        soundToggle.style.textShadow = 'none';
+    }
 });

@@ -17,6 +17,7 @@
         <span class="lang-divider">|</span>
         <span class="lang-btn" data-lang="en">EN</span>
     </div>
+    <div class="sound-toggle hidden" id="sound-toggle">🔊</div>
 
     <div class="container" id="start-container">
         <h1>Önce ismini yazar mısın? 🥺💕</h1>
@@ -61,10 +62,10 @@
             </ul>
             <div class="card-form">
                 <input type="text" id="pro-card-name" placeholder="Kart Sahibi" disabled>
-                <input type="text" placeholder="4111 2222 3333 4444" maxlength="19">
+                <input type="text" id="pro-card-number" placeholder="4111 2222 3333 4444" maxlength="19">
                 <div class="card-row">
-                    <input type="text" placeholder="MM/YY" maxlength="5">
-                    <input type="text" placeholder="CVC" maxlength="3">
+                    <input type="text" id="pro-card-expiry" placeholder="MM/YY" maxlength="5">
+                    <input type="text" id="pro-card-cvc" placeholder="CVC" maxlength="3">
                 </div>
                 <button class="btn btn-yes" id="subscribe-btn">Şimdi Abone Ol 💖</button>
             </div>

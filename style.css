@@ -490,3 +490,36 @@ footer:hover {
 .close-btn:hover {
     color: #ff007f;
 }
+
+
+.sound-toggle {
+    position: fixed;
+    top: 20px;
+    right: 110px;
+    z-index: 1000;
+    background: rgba(15, 15, 15, 0.6);
+    padding: 6px 12px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 0, 127, 0.2);
+    backdrop-filter: blur(5px);
+    cursor: pointer;
+    color: #b3b3b3;
+    font-size: 0.95rem;
+    user-select: none;
+    transition: all 0.3s ease;
+}
+
+.sound-toggle:hover {
+    color: #ff007f;
+    text-shadow: 0 0 8px #ff007f;
+    border-color: rgba(255, 0, 127, 0.5);
+}
+
+@media (max-width: 480px) {
+    .sound-toggle {
+        top: 15px;
+        right: 90px;
+        padding: 4px 8px;
+        font-size: 0.85rem;
+    }
+}
