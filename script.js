@@ -14,7 +14,9 @@ const premiumModal = document.getElementById('premium-modal');
 const closePremiumBtn = document.getElementById('close-premium-btn');
 const subscribeBtn = document.getElementById('subscribe-btn');
 const proCardName = document.getElementById('pro-card-name');
+const soundContainer = document.getElementById('sound-container');
 const soundToggle = document.getElementById('sound-toggle');
+const volumeSlider = document.getElementById('volume-slider');
 const proCardNumInput = document.getElementById('pro-card-number');
 const proCardExpiryInput = document.getElementById('pro-card-expiry');
 const proCardCvcInput = document.getElementById('pro-card-cvc');
@@ -275,7 +277,10 @@ function burstHearts() {
 
 yesBtn.addEventListener('click', () => {
 
-    soundToggle.classList.remove('hidden');
+    soundContainer.classList.remove('hidden');
+    soundContainer.classList.remove('muted');
+    volumeSlider.classList.remove('hidden-slider');
+    volumeSlider.value = 0;
 
     mainContainer.classList.add('hidden');
 
@@ -291,6 +296,7 @@ yesBtn.addEventListener('click', () => {
 
     proposalAudio.currentTime = 38;
     proposalAudio.volume = 0;
+    proposalAudio.muted = false;
     proposalAudio.play().catch(err => {
         console.log("Audio play blocked by browser autoplay policy:", err);
     });
@@ -302,6 +308,7 @@ yesBtn.addEventListener('click', () => {
     const fadeIn = setInterval(() => {
         if (proposalAudio.volume < maxVolume) {
             proposalAudio.volume = Math.min(maxVolume, proposalAudio.volume + volumeStep);
+            volumeSlider.value = proposalAudio.volume;
         } else {
             clearInterval(fadeIn);
         }
@@ -488,14 +495,47 @@ subscribeBtn.addEventListener('click', () => {
     });
 });
 
+let previousVolume = 0.25;
+
 soundToggle.addEventListener('click', () => {
-    if (proposalAudio.muted) {
+    if (proposalAudio.muted || proposalAudio.volume === 0) {
+        // Unmute
+        proposalAudio.muted = false;
+        if (previousVolume === 0) previousVolume = 0.25;
+        proposalAudio.volume = previousVolume;
+        volumeSlider.value = previousVolume;
+        soundToggle.innerHTML = '🔊';
+        soundToggle.style.textShadow = '0 0 10px #ff007f';
+        soundContainer.classList.remove('muted');
+        volumeSlider.classList.remove('hidden-slider');
+    } else {
+        // Mute
+        previousVolume = proposalAudio.volume > 0 ? proposalAudio.volume : previousVolume;
+        proposalAudio.muted = true;
+        proposalAudio.volume = 0;
+        volumeSlider.value = 0;
+        soundToggle.innerHTML = '🔇';
+        soundToggle.style.textShadow = 'none';
+        soundContainer.classList.add('muted');
+        volumeSlider.classList.add('hidden-slider');
+    }
+});
+
+volumeSlider.addEventListener('input', (e) => {
+    const val = parseFloat(e.target.value);
+    proposalAudio.volume = val;
+    if (val > 0) {
         proposalAudio.muted = false;
         soundToggle.innerHTML = '🔊';
         soundToggle.style.textShadow = '0 0 10px #ff007f';
+        soundContainer.classList.remove('muted');
+        volumeSlider.classList.remove('hidden-slider');
+        previousVolume = val;
     } else {
         proposalAudio.muted = true;
         soundToggle.innerHTML = '🔇';
         soundToggle.style.textShadow = 'none';
+        soundContainer.classList.add('muted');
+        volumeSlider.classList.add('hidden-slider');
     }
 });

@@ -492,34 +492,105 @@ footer:hover {
 }
 
 
-.sound-toggle {
+.sound-container {
     position: fixed;
     top: 20px;
-    right: 110px;
+    right: 110px; /* Dil değiştiricinin soluna yerleştiriyoruz */
     z-index: 1000;
     background: rgba(15, 15, 15, 0.6);
     padding: 6px 12px;
     border-radius: 20px;
     border: 1px solid rgba(255, 0, 127, 0.2);
     backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.sound-container:hover {
+    border-color: rgba(255, 0, 127, 0.5);
+    box-shadow: 0 0 10px rgba(255, 0, 127, 0.2);
+}
+
+.sound-container.muted {
+    gap: 0;
+}
+
+#sound-toggle {
     cursor: pointer;
     color: #b3b3b3;
     font-size: 0.95rem;
     user-select: none;
     transition: all 0.3s ease;
+    display: inline-block;
 }
 
-.sound-toggle:hover {
+#sound-toggle:hover {
     color: #ff007f;
     text-shadow: 0 0 8px #ff007f;
-    border-color: rgba(255, 0, 127, 0.5);
+}
+
+#volume-slider {
+    width: 70px;
+    height: 4px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+    outline: none;
+    transition: width 0.3s ease, opacity 0.3s ease, margin 0.3s ease;
+    opacity: 1;
+}
+
+#volume-slider.hidden-slider {
+    width: 0px;
+    opacity: 0;
+    pointer-events: none;
+    margin: 0;
+}
+
+#volume-slider::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 4px;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 2px;
+}
+
+#volume-slider::-webkit-slider-thumb {
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+    background: #ff007f;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -4px;
+    box-shadow: 0 0 8px #ff007f;
+    transition: transform 0.1s;
+}
+
+#volume-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
 }
 
 @media (max-width: 480px) {
-    .sound-toggle {
+    .sound-container {
         top: 15px;
         right: 90px;
         padding: 4px 8px;
+        gap: 6px;
+    }
+    
+    #sound-toggle {
         font-size: 0.85rem;
+    }
+    
+    #volume-slider {
+        width: 50px;
+    }
+    
+    #volume-slider.hidden-slider {
+        width: 0px;
     }
 }
