@@ -288,13 +288,14 @@ yesBtn.addEventListener('click', () => {
     proposalAudio.play().catch(err => {
         console.log("Audio play blocked by browser autoplay policy:", err);
     });
+    const maxVolume = 0.25;
     const fadeDuration = 1000;
     const fadeInterval = 50;
-    const volumeStep = fadeInterval / fadeDuration;
+    const volumeStep = (maxVolume * fadeInterval) / fadeDuration;
 
     const fadeIn = setInterval(() => {
-        if (proposalAudio.volume < 1) {
-            proposalAudio.volume = Math.min(1, proposalAudio.volume + volumeStep);
+        if (proposalAudio.volume < maxVolume) {
+            proposalAudio.volume = Math.min(maxVolume, proposalAudio.volume + volumeStep);
         } else {
             clearInterval(fadeIn);
         }
